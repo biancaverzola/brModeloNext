@@ -132,46 +132,55 @@ public class ColumnObject extends ModelingObject {
 		return super.attributesCount() + NUMBER_OF_ATTRIBUTES;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean enabled[]) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int types[], String names[], String values[], boolean enabled[], boolean visible[]) {
+		super.getAttributes(types, names, values, enabled, visible);
 
 		int i = super.attributesCount();
 
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("index");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i++] = Integer.toString(position);
 		types[i] = AppConstants.CHECK_BOX;
 		names[i] = mxResources.get("primaryKey");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = primaryKey ? "true" : "false";
 		types[i] = AppConstants.CHECK_BOX;
 		names[i] = mxResources.get("foreignKey");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = foreignKey ? "true" : "false";
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("type");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = type;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("originTable");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i++] = originTable;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("originField");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i++] = originField;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("onUpdate");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i++] = onUpdate;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("onDelete");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i++] = onDelete;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("complement");
 		enabled[i] = false;
+		visible[i] = true;
 		values[i] = complement;
 	}
 

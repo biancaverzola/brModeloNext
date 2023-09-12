@@ -27,8 +27,8 @@ public class AssociativeRelationObject extends RelationObject {
 		return index;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[]) {
-		super.getAttributes(types, names, values, fieldsEnabled);
+	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[], boolean fieldsVisible[]) {
+		super.getAttributes(types, names, values, fieldsEnabled, fieldsVisible);
 	}
 
 	public String getNameLabel() {

@@ -70,24 +70,27 @@ public class ConnectorObject extends ModelingObject {
 		return super.attributesCount() + NUMBER_OF_ATTRIBUTES;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean enabled[]) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int types[], String names[], String values[], boolean enabled[], boolean visible[]) {
+		super.getAttributes(types, names, values, enabled, visible);
 
 		int i = super.attributesCount();
 
 		types[i] = AppConstants.CHECK_BOX;
 		names[i] = mxResources.get("weakEntity");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = weakEntity ? "true" : "false";
 
 		types[i] = AppConstants.COMBO_BOX;
 		names[i] = mxResources.get("cardinality");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = Cardinality.getText(cardinality);
 
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = "Indicar a cardinalidade máxima(n)";
 		enabled[i] = true;
+		visible[i] = true;
 		values[i] = getMaximum() + "";
 
 	}

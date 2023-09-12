@@ -34,24 +34,27 @@ public class TableObject extends ModelingObject {
 		return super.attributesCount() + NUMBER_OF_ATTRIBUTES;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean enabled[]) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int types[], String names[], String values[], boolean enabled[], boolean visible[]) {
+		super.getAttributes(types, names, values, enabled, visible);
 
 		int i = super.attributesCount();
 
 		types[i] = -1;
 		names[i] = null;
 		enabled[i] = true;
+		visible[i] = true;
 		values[i++] = mxResources.get("fieldsNumber") + ": " + Integer.toString(getChildObjects().size());
 		types[i] = -1;
 		names[i] = null;
 		enabled[i] = true;
+		visible[i] = true;
 		values[i] = mxResources.get("keys") + ": [";
 		values[i] += commaSeparatedPrimaryKeys();
 		values[i++] += "]";
 		types[i] = AppConstants.COMBO_BOX;
 		names[i] = mxResources.get("conversionOrder");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i] = Integer.toString(conversionOrder);
 	}
 

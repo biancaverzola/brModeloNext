@@ -87,44 +87,51 @@ public class AttributeObject extends ModelingObject {
 		return super.attributesCount() + 7;
 	}
 
-	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled, boolean[] visible) {
+		super.getAttributes(types, names, values, enabled, visible);
 
 		int i = super.attributesCount();
 
 		types[i] = 1;
 		names[i] = mxResources.get("identifier");
-		enabled[i] = true;
+		enabled[i] = false;
+		visible[i] = false;
 		values[(i++)] = (this.identifier ? "true" : "false");
 		types[i] = 1;
 
 		names[i] = mxResources.get("optional");
 		enabled[i] = true;
+		visible[i] = true;
 		values[(i++)] = (this.optional ? "true" : "false");
 		types[i] = 1;
 
 		names[i] = mxResources.get("composed");
 		enabled[i] = false;
+		visible[i] = false;
 		values[(i++)] = (this.composed ? "true" : "false");
 		types[i] = 1;
 
 		names[i] = mxResources.get("multiValued");
 		enabled[i] = true;
+		visible[i] = true;
 		values[(i++)] = (this.multiValued ? "true" : "false");
 		types[i] = 2;
 
 		names[i] = mxResources.get("minimumCardinality");
 		enabled[i] = (this.multiValued ? true : false);
+		visible[i] = true;
 		values[(i++)] = Character.toString(this.minimumCardinality);
 		types[i] = 2;
 
 		names[i] = mxResources.get("maximumCardinality");
 		enabled[i] = (this.multiValued ? true : false);
+		visible[i] = true;
 		values[(i++)] = Character.toString(this.maximumCardinality);
 		types[i] = 0;
 
 		names[i] = mxResources.get("type");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i] = this.type;
 	}
 

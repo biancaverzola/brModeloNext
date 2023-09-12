@@ -73,18 +73,20 @@ public class EntityObject extends ModelingObject implements Comparable<EntityObj
 		return super.attributesCount() + 2;
 	}
 
-	public void getAttributes(int[] types, String[] names, String[] values, boolean[] fieldsEnabled) {
-		super.getAttributes(types, names, values, fieldsEnabled);
+	public void getAttributes(int[] types, String[] names, String[] values, boolean[] fieldsEnabled, boolean fieldsVisible[]) {
+		super.getAttributes(types, names, values, fieldsEnabled, fieldsVisible);
 
 		int i = super.attributesCount();
 
 		types[i] = 1;
 		names[i] = mxResources.get("selfRelated");
 		fieldsEnabled[i] = false;
+		fieldsVisible[i] = false;
 		values[(i++)] = (this.selfRelated ? "true" : "false");
 		types[i] = 1;
 		names[i] = mxResources.get("specialized");
 		fieldsEnabled[i] = false;
+		fieldsVisible[i] = false;
 		values[i] = (this.specialized ? "true" : "false");
 	}
 

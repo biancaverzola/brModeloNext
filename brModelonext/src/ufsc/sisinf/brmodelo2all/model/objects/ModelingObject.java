@@ -109,17 +109,19 @@ public class ModelingObject implements Serializable {
 		return 0;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[]) {
+	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[], boolean fieldsVisible[]) {
 		int i = getIndexForComponents();
 
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = getNameLabel();
 		values[i] = name;
-		fieldsEnabled[i++] = true;
+		fieldsEnabled[i] = true;
+		fieldsVisible [i++] = true;
 		types[i] = AppConstants.TEXT_FIELD;
 		names[i] = mxResources.get("notes");
 		values[i] = notes;
 		fieldsEnabled[i] = true;
+		fieldsVisible[i] = true;
 	}
 
 	public String getNameLabel() {

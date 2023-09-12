@@ -33,18 +33,19 @@ public class AssociativeEntityObject extends ModelingObject {
 		return super.attributesCount() + relationObject.attributesCount() + NUMBER_OF_ATTRIBUTES;
 	}
 
-	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[]) {
-		super.getAttributes(types, names, values, fieldsEnabled);
+	public void getAttributes(int types[], String names[], String values[], boolean fieldsEnabled[], boolean fieldsVisible[]) {
+		super.getAttributes(types, names, values, fieldsEnabled, fieldsVisible);
 
 		int i = super.attributesCount();
 
 		types[i] = AppConstants.CHECK_BOX;
 		names[i] = mxResources.get("selfRelated");
 		fieldsEnabled[i] = false;
+		fieldsVisible[i] = false;
 		values[i++] = selfRelated ? "true" : "false";
 
 		relationObject.setIndexForComponents(super.attributesCount() + NUMBER_OF_ATTRIBUTES);
-		relationObject.getAttributes(types, names, values, fieldsEnabled);
+		relationObject.getAttributes(types, names, values, fieldsEnabled, fieldsVisible);
 	}
 
 	public void setAttributes(String values[]) {

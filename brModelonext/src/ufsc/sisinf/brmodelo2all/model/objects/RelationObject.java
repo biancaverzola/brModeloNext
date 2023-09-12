@@ -49,8 +49,8 @@ public class RelationObject extends ModelingObject {
 		return super.attributesCount() + 0;
 	}
 
-	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled, boolean[] visible) {
+		super.getAttributes(types, names, values, enabled, visible);
 	}
 
 	public int windowHeight() {

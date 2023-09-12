@@ -91,10 +91,13 @@ public class PropertiesWindow extends JDialog {
 		String fieldsNames[] = new String[count];
 		String fieldsValues[] = new String[count];
 		boolean fieldsEnabled[] = new boolean[count];
-		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled);
+		boolean fieldsVisible[] = new boolean[count];
+		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled, fieldsVisible);
 
 		for (int i = 0; i < count; i++) {
-			fillAttributeComponents(p, fieldsNames[i], fieldsValues[i], fieldsTypes[i], fieldsEnabled[i], i);
+			if (fieldsVisible[i]) {
+				fillAttributeComponents(p, fieldsNames[i], fieldsValues[i], fieldsTypes[i], fieldsEnabled[i], i);
+			}
 		}
 
 		modelingObject.createHandlers(fields);
@@ -210,7 +213,8 @@ public class PropertiesWindow extends JDialog {
 		String fieldsNames[] = new String[count];
 		String fieldsValues[] = new String[count];
 		boolean fieldsEnabled[] = new boolean[count];
-		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled);
+		boolean fieldsVisible[] = new boolean[count];
+		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled, fieldsVisible);
 
 		String newValues[] = new String[count];
 		for (int i = 0; i < count; i++) {
@@ -220,15 +224,27 @@ public class PropertiesWindow extends JDialog {
 
 			switch (fieldsTypes[i]) {
 			case AppConstants.TEXT_FIELD:
-				newValues[i] = ((JTextField) fields[i]).getText();
+				if (fieldsVisible[i]) {
+					newValues[i] = ((JTextField) fields[i]).getText();
+				} else {
+					newValues[i] = fieldsValues[i];
+				}
 				break;
 
 			case AppConstants.CHECK_BOX:
-				newValues[i] = ((JCheckBox) fields[i]).isSelected() ? "true" : "false";
+				if (fieldsVisible[i]) {
+					newValues[i] = ((JCheckBox) fields[i]).isSelected() ? "true" : "false";
+				} else {
+					newValues[i] = fieldsValues[i];
+				}
 				break;
 
 			case AppConstants.COMBO_BOX:
-				newValues[i] = (String) ((JComboBox) fields[i]).getSelectedObjects()[0];
+				if (fieldsVisible[i]) {
+					newValues[i] = (String) ((JComboBox) fields[i]).getSelectedObjects()[0];
+				} else {
+					newValues[i] = fieldsValues[i];
+				}
 				break;
 			}
 		}

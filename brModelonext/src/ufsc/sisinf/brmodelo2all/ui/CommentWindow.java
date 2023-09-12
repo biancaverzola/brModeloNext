@@ -89,7 +89,8 @@ public class CommentWindow extends JDialog {
 		String fieldsNames[] = new String[count];
 		String fieldsValues[] = new String[count];
 		boolean fieldsEnabled[] = new boolean[count];
-		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled);
+		boolean fieldsVisible[] = new boolean[count];
+		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled, fieldsVisible);
 
 		for (int i = 0; i < 1; i++) {
 			fillAttributeComponents(p, fieldsNames[i], fieldsValues[i], fieldsTypes[i], fieldsEnabled[i], i);
@@ -137,7 +138,7 @@ public class CommentWindow extends JDialog {
 		}
 
 		if (usesCaption) {
-			JLabel caption = new JLabel("Comentário");
+			JLabel caption = new JLabel("Comentï¿½rio");
 			caption.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
 			if (type == AppConstants.COMBO_BOX) {
 				JPanel innerPanel = new JPanel();
@@ -210,7 +211,8 @@ public class CommentWindow extends JDialog {
 		String fieldsNames[] = new String[count];
 		String fieldsValues[] = new String[count];
 		boolean fieldsEnabled[] = new boolean[count];
-		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled);
+		boolean fieldsVisible[] = new boolean[count];
+		modelingObject.getAttributes(fieldsTypes, fieldsNames, fieldsValues, fieldsEnabled, fieldsVisible);
 
 		String newValues[] = new String[count];
 		for (int i = 0; i < 1; i++) {

@@ -50,18 +50,20 @@ public class InheritanceObject extends ModelingObject {
 		return super.attributesCount() + 2;
 	}
 
-	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled) {
-		super.getAttributes(types, names, values, enabled);
+	public void getAttributes(int[] types, String[] names, String[] values, boolean[] enabled, boolean[] visible) {
+		super.getAttributes(types, names, values, enabled, visible);
 
 		int i = super.attributesCount();
 
 		types[i] = 1;
 		names[i] = mxResources.get("exclusive");
 		enabled[i] = false;
+		visible[i] = false;
 		values[(i++)] = (this.exclusive ? "true" : "false");
 		types[i] = 1;
 		names[i] = mxResources.get("partial");
 		enabled[i] = true;
+		visible[i] = true;
 		values[i] = (this.partial ? "true" : "false");
 	}
 
