@@ -591,7 +591,7 @@ public class AppMainWindow extends JPanel {
 					else
 						title = mxResources.get("newNoSQL");
 
-					title += " " + windowCount;
+					title += " " + currentEditor.getWindowNumber();
 
 					if (currentEditor.isModified()) {
 						title += "*";

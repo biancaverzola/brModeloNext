@@ -64,6 +64,7 @@ public class ModelingEditor extends JInternalFrame implements Serializable {
 	protected final AppMainWindow mainWindow;
 	protected final boolean conceptualModeling;
 	protected final boolean relationalModeling;
+	protected final int windowNumber;
 	protected mxGraphComponent modelingComponent;
 	protected ModelingManager modelingManager;
 	protected mxUndoManager undoManager;
@@ -88,6 +89,10 @@ public class ModelingEditor extends JInternalFrame implements Serializable {
 		return modelingManager;
 	}
 
+	public int getWindowNumber() {
+		return windowNumber;
+	}
+
 	protected mxIEventListener undoHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			undoManager.undoableEditHappened((mxUndoableEdit) evt.getProperty("edit"));
@@ -105,6 +110,7 @@ public class ModelingEditor extends JInternalFrame implements Serializable {
 		this.mainWindow = mainWindow;
 		this.conceptualModeling = conceptualModeling;
 		this.relationalModeling = relationalModeling;
+		this.windowNumber = AppMainWindow.windowCount + 1;
 
 		// Stores a reference to the graph and creates the command history
 		modelingComponent = new ModelingComponent(new Modeling(), mainWindow);
