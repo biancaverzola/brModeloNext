@@ -435,7 +435,20 @@ public class ConceptualToNoSql {
 				mxCell unmarkedRelation = getUnmarkedRelation(entityOfContinuation);
 				mxCell e2Cell = (mxCell) getEntitiesConnectedToRelation(unmarkedRelation, entityOfContinuation).get(0);
 				if (unmarkedRelation != null) {
-					if ((getRelationMaximumCardinality(unmarkedRelation).equals("(1:1)"))
+					if ((getEntitiesConnectedToRelation(unmarkedRelation, null).size() == 2)
+                       && getEntity2Cardinality(unmarkedRelation, entityOfContinuation).equals("(1,1)")
+                       && getEntity2Cardinality(unmarkedRelation, e2Cell).equals("(1,1)")
+                       && (!hasConvertedEntitiesInRelations(unmarkedRelation))) {
+                    	System.out.println("aquiaqui");
+                    	convertFusion(unmarkedRelation);
+                        EntityObject e2 = (EntityObject) ((mxICell) getEntitiesConnectedToRelation(unmarkedRelation, entityOfContinuation).get(0)).getValue();
+                        e2.setConvertedEntity(true);
+                        e2.setMarkedEntity(true);
+                        EntityObject entity = (EntityObject) entityOfContinuation.getValue();
+                        entity.setConvertedEntity(true);
+                        entity.setMarkedEntity(true);
+                        entityOfContinuation = e2Cell;
+					} else if ((getRelationMaximumCardinality(unmarkedRelation).equals("(1:1)"))
 							&& (getEntity2Cardinality(unmarkedRelation, entityOfContinuation).equals("(1,1)"))
 							&& (getEntitiesConnectedToRelation(unmarkedRelation, entityOfContinuation).get(0) != null)
 							&& (!hasConvertedEntitiesInRelations(unmarkedRelation))) {
@@ -531,6 +544,43 @@ public class ConceptualToNoSql {
 		if (!orderedListOfEntities.contains(parent))
 			orderedListOfEntities.add(parent);
 	}
+
+	public Object convertFusion(mxCell relationCell) {
+		RelationObject relation = (RelationObject) relationCell.getValue();
+		List<EntityObject> entities = orderEntitiesForRelationsRules(relationCell);
+		EntityObject entity1 = (EntityObject) entities.get(0);
+		EntityObject entity2 = (EntityObject) entities.get(1);
+		mxICell entity1Cell = findEntityCell(entity1.getName());
+		
+		String collectionName = entity1.getName() + " - " + entity2.getName();
+		double x = entity1Cell.getGeometry().getX();
+		double y = entity1Cell.getGeometry().getY();
+		
+		Modeling noSqlModeling = (Modeling) this.noSqlModelingEditor.modelingComponent.getGraph();
+		
+		Object collection = noSqlModeling.insertVertex(noSqlModeling.getDefaultParent(), null,
+	       new Collection(collectionName, false), x, y, 200.0D, 40.0D, "verticalAlign=top");
+		
+		this.collectionsCreated.add((Collection) ((mxCell) collection).getValue());
+		this.cellsCreated.add((mxCell) collection);
+		int count = entity1.getChildObjects().size();
+		for (int i = 0; i < count; i++) {
+			mxCell cell = (mxCell) entity1.getChildObjects().get(i);
+			if ((cell.getValue() instanceof AttributeObject)) {
+				convertAttribute((AttributeObject) cell.getValue(), ((mxCell) collection).getGeometry(),
+                 (mxCell) collection, null);
+		   }
+		}
+		int count2 = entity2.getChildObjects().size();
+		for (int i = 0; i < count2; i++) {
+			mxCell cell = (mxCell) entity2.getChildObjects().get(i);
+			if ((cell.getValue() instanceof AttributeObject)) {
+				convertAttribute((AttributeObject) cell.getValue(), ((mxCell) collection).getGeometry(),
+					(mxCell) collection, null);
+			}
+		}
+		return collection;
+		}
 
 	public void singleEntityModeledRelation(mxCell relationCell) {
 		RelationObject relation = (RelationObject) relationCell.getValue();
