@@ -98,7 +98,7 @@ public class EntityObject extends ModelingObject implements Comparable<EntityObj
 	}
 
 	public int windowHeight() {
-		return 220;
+		return 180;
 	}
 
 	public String getToolTip() {

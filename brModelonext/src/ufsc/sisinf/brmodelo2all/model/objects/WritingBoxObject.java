@@ -14,7 +14,7 @@ public class WritingBoxObject extends ModelingObject {
 	}
 
 	public int windowHeight() {
-		return 220;
+		return 240;
 	}
 
 	public String getStyle() {

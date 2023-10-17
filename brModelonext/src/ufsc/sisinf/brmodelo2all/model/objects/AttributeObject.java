@@ -147,7 +147,7 @@ public class AttributeObject extends ModelingObject {
 	}
 
 	public int windowHeight() {
-		return 360;
+		return 320;
 	}
 
 	public String getToolTip() {

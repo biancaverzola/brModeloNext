@@ -58,7 +58,7 @@ public class AssociativeEntityObject extends ModelingObject {
 	}
 
 	public int windowHeight() {
-		return 300;
+		return 260;
 	}
 
 	public String getToolTip() {

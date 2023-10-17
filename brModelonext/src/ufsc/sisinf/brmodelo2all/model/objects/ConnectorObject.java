@@ -121,7 +121,7 @@ public class ConnectorObject extends ModelingObject {
 	}
 
 	public int windowHeight() {
-		return 300;
+		return 260;
 	}
 
 	public String getToolTip() {

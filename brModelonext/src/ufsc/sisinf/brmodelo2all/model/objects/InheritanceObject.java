@@ -75,7 +75,7 @@ public class InheritanceObject extends ModelingObject {
 	}
 
 	public int windowHeight() {
-		return 220;
+		return 200;
 	}
 
 	public String getToolTip() {
