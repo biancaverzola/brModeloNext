@@ -239,20 +239,48 @@ public class ConceptualToNoSql {
 	}
 
 	public void convertGeneralization(mxCell inheritanceCell) {
-		boolean generalizationCountTest = generalizationCountTest(inheritanceCell);
+		/*boolean generalizationCountTest = generalizationCountTest(inheritanceCell);
 		InheritanceObject inheritanceObject = (InheritanceObject) inheritanceCell.getValue();
 		if (inheritanceObject.isConverted()) {
 			return;
 		}
+		
 		if ((!hasConvertedEntities(inheritanceCell)) && (!subclassesConnectedToRelation(inheritanceCell))
 				&& (generalizationCountTest) && (!hasReferencedEntities(inheritanceCell))) {
+			System.out.println("superclass");
 			superclassModeledGeneralization(inheritanceCell);
 		} else if ((!inheritanceObject.isPartial()) && (inheritanceObject.isExclusive())
 				&& (!hasConvertedEntities(inheritanceCell)) && (!superclassConnectedToRelation(inheritanceCell))) {
-			subclassModeledGeneralization(inheritanceCell);
+					System.out.println("subclass");
+					subclassModeledGeneralization(inheritanceCell);
 		} else {
+			System.out.println("modeled");
 			inheritanceModeledGeneralization(inheritanceCell);
 		}
+		*/
+		InheritanceObject inheritanceObject = (InheritanceObject) inheritanceCell.getValue();
+		if (inheritanceObject.isConverted()) {
+			return;
+		}
+
+		String[] opcoes = {"na entidade genérica", "nas entidades especializadas", "na hierarquia"};
+		int escolha = JOptionPane.showOptionDialog(
+			null,
+			"A especialização " + inheritanceObject.getName() + " deve ter ênfase:", 
+			"Escolha o tipo de conversão", 
+			JOptionPane.DEFAULT_OPTION, 
+			JOptionPane.QUESTION_MESSAGE,
+			null,
+			opcoes, opcoes[0]);
+		
+		if (escolha == 0) {
+			superclassModeledGeneralization(inheritanceCell);
+		} else if (escolha == 1) {
+			subclassModeledGeneralization(inheritanceCell);
+		} else if (escolha == 2) {
+			inheritanceModeledGeneralization(inheritanceCell);
+		} // oq fazer quando o usuário fechar a pergunta e não fazer nenhuma escolha??
+		
 		mxCell parentEntityCell = (mxCell) inheritanceObject.getParentObject();
 		EntityObject parentEntity = (EntityObject) parentEntityCell.getValue();
 		setInheritancesConverted(parentEntity.getName());
@@ -1136,6 +1164,7 @@ public class ConceptualToNoSql {
 				count++;
 			}
 		}
+		System.out.println(count);
 		return count;
 	}
 
