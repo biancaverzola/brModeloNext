@@ -346,7 +346,7 @@ public class ConceptualToNoSql {
 	}
 
 	public void subclassModeledGeneralization(mxCell inheritanceCell) {
-		List<mxCell> subentities = new ArrayList<mxCell>();
+	 	List<mxCell> subentities = new ArrayList<mxCell>();
 		boolean notExclusive = false;
 		InheritanceObject inheritanceObject = (InheritanceObject) inheritanceCell.getValue();
 		List<Object> superclassAttributes = new ArrayList<Object>();
@@ -381,6 +381,7 @@ public class ConceptualToNoSql {
 						null);
 			}
 		}
+		superclassEntity.setConvertedEntity(true);
 	}
 
 	public void inheritanceModeledGeneralization(mxCell inheritanceCell) {
@@ -434,6 +435,8 @@ public class ConceptualToNoSql {
 			} else {
 				mxICell sourceCell = findCollectionCell(parentEntity.getName());
 				mxICell targetCell = findCollectionCell(entity.getName());
+				//Collection subcollection = (Collection) targetCell.getValue();
+				//insertCollectionToCollection(subcollection, superCollection);
 				this.noSqlModelingEditor.modelingManager.insertNoSqlReferenceAttribute(0, 0, sourceCell, targetCell);
 				superCollection.setReferencedCollection(true);
 			}
