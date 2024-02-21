@@ -242,7 +242,6 @@ public class ConceptualConversor {
 		double x = tableGeometry.getCenterX();
 		double y = tableGeometry.getCenterY();
 
-		// aqui!
 		mxICell sourceC = (mxICell) table;
 		mxGeometry source = tableGeometry;
 

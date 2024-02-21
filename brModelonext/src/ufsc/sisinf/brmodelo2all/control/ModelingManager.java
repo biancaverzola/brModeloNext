@@ -246,7 +246,6 @@ public class ModelingManager {
 			this.sourceCell = ((mxICell) object);
 			mxICell parentCell = this.sourceCell.getParent();
 			if (this.sourceCell.getStyle().equals("verticalAlign=top")) {
-				System.out.println("aqui??");
 				block = addObject(this.sourceCell, "block", BLOCK_HEIGHT, BLOCK_WIDTH_PERCENTAGE);
 			} else {
 				if ((!this.sourceCell.getStyle().equals("noSqlAttribute"))

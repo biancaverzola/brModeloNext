@@ -273,13 +273,13 @@ public class ConceptualToNoSql {
 			null,
 			opcoes, opcoes[0]);
 		
-		if (escolha == 0) {
+		if (escolha == 0 || escolha == -1) {
 			superclassModeledGeneralization(inheritanceCell);
 		} else if (escolha == 1) {
 			subclassModeledGeneralization(inheritanceCell);
 		} else if (escolha == 2) {
 			inheritanceModeledGeneralization(inheritanceCell);
-		} // oq fazer quando o usuário fechar a pergunta e não fazer nenhuma escolha??
+		}
 		
 		mxCell parentEntityCell = (mxCell) inheritanceObject.getParentObject();
 		EntityObject parentEntity = (EntityObject) parentEntityCell.getValue();
@@ -470,7 +470,6 @@ public class ConceptualToNoSql {
                        && getEntity2Cardinality(unmarkedRelation, entityOfContinuation).equals("(1,1)")
                        && getEntity2Cardinality(unmarkedRelation, e2Cell).equals("(1,1)")
                        && (!hasConvertedEntitiesInRelations(unmarkedRelation))) {
-                    	System.out.println("aquiaqui");
                     	convertFusion(unmarkedRelation);
                         EntityObject e2 = (EntityObject) ((mxICell) getEntitiesConnectedToRelation(unmarkedRelation, entityOfContinuation).get(0)).getValue();
                         e2.setConvertedEntity(true);
